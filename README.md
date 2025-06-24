@@ -90,16 +90,6 @@ Avg busy time = 152
 Avg utilization = 77%
 ```
 
-## 🏗 Project Phases
-
-| Phase     | Weight | Deadline |
-|-----------|--------|----------|
-| Phase 1.1 | 10%    | Week 6   |
-| Phase 1.2 | 30%    | Week 9   |
-| Phase 2   | 60%    | Week 14  |
-
-> ⛔ **Late submission is not allowed.**  
-> ⚠️ **Sharing your code with others via GitHub or similar platforms is considered cheating. Do NOT publish your code publicly before the final exams.**
 
 ## 🧠 Concepts Covered
 
@@ -110,11 +100,7 @@ Avg utilization = 77%
 - File I/O operations
 - Data structure design & memory management
 
-## 🤝 Team
-
-Each team must consist of **4 students**.
-
 ## 📎 Note
 
 > This project is part of the course **CIE205: Data Structures and Algorithms – Fall 2024**.  
-> Maintain academic integrity and follow all submission guidelines strictly.
+
