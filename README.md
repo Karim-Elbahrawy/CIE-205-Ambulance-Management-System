@@ -1,87 +1,149 @@
-# 🚑 Ambulance Management System
+# AmbulanceManagementSystem
 
-## 📋 Project Description
+Made by @Karim-Elbahrawy and team for Zewail City CIE205  
+Data Structures and Algorithms course — Fall 2024.
 
-This project simulates a centralized ambulance dispatching and allocation system that manages ambulance services across multiple hospitals. The goal is to automate the ambulance assignment process in a way that ensures optimal use of available ambulance cars, improves response time, and prioritizes emergency cases.
+## Style Guide
 
-Designed for the **Data Structures and Algorithms** course at **Zewail City - University of Science and Technology**, this system models the dynamic nature of real-world ambulance operations using efficient data structures, algorithms, and scheduling strategies.
+This project is designed to simulate ambulance service operations in a centralized hospital system. It should be developed in C++ and run on Windows using standard compilers (Visual Studio 2022 preferred). The style here follows a clean and organized structure influenced by Google's C++ Style Guide and the C++ Core Guidelines.
 
-## 💡 Objectives
+---
 
-- Simulate emergency and non-emergency patient requests.
-- Dispatch the nearest available car (SCars for scheduled transport, NCars for emergency pickup).
-- Handle patient request cancellations in real-time.
-- Calculate various statistics for performance evaluation (e.g., average wait time, car utilization, etc.).
-- Output simulation results in a structured format.
+### General
 
-## 📥 Input File Description
+- Use `Ctrl+K, Ctrl+D` in Visual Studio to auto-format code before committing.
+- Comment important logic, especially scheduling, car assignment, and queueing logic.
 
-The input consists of:
+---
 
-1. Number of hospitals.
-2. Speeds of SCars and NCars.
-3. A 2D matrix with distances between hospitals.
-4. Number of SCars and NCars at each hospital.
-5. A list of patient requests:
-    - **NP**: Normal patient
-    - **SP**: Scheduled patient
-    - **EP**: Emergency patient (includes severity)
-6. A number of cancellations, followed by lines with patient ID and cancellation time.
+### C++ Version
 
-> ⚠️ Request lines are sorted in ascending order by request time.  
-> ❌ Ignore cancellation if the patient has already been picked up.
+- Stick to standard C++17 or higher.
+- Avoid platform-specific extensions unless needed (e.g., file I/O on Windows).
 
-### Sample Input
-```
-4                  --> 4 hospitals
-110 75             --> SCars speed = 110, NCars speed = 75
+---
 
-0   154 587 634    --> Distance matrix (4x4)
-154 0   533 214
-587 533 0   945
-634 214 945 0
+### Header Files
 
-3 11               --> 3 SCars, 11 NCars in hospital 1
-2 5                --> 2 SCars, 5 NCars in hospital 2
-6 15               --> 6 SCars, 15 NCars in hospital 3
-1 2                --> 1 SCar, 2 NCars in hospital 4
+- Each `.cpp` file should have a corresponding `.h` header file.
+- Use `#pragma once` for include guards.
+- Avoid transitive inclusions — include all necessary headers directly.
 
-150                --> Number of requests
-NP 3 1 2 159        --> NP: time=3, PID=1, HID=3, DST=159m
-SP 3 2 1 588        --> SP: time=3, PID=2, HID=1, DST=588m
-EP 12 3 4 433 5     --> EP: time=12, PID=3, HID=4, DST=433m, SVR=5
-...
+---
 
-7                  --> Number of cancellations
-15 1               --> PID=1 canceled at time=15
-...
-```
+### Naming
 
-## 📤 Output File Description
+1. Use descriptive names — avoid vague abbreviations.
+2. File names: `snake_case`, e.g., `dispatcher_system.h`
+3. Variables: `camelCase`
+4. Types (classes, structs, enums): `PascalCase`
+5. Constants and enum values: `SCREAMING_SNAKE_CASE`
+6. Private class members: `snake_case_` (trailing underscore)
 
-Each output line corresponds to a patient who successfully arrived at a hospital:
+---
 
-Format:
-```
-FT  PID  QT  WT
-```
-Where:
-- `FT`: Finish time
-- `PID`: Patient ID
-- `QT`: Queue time
-- `WT`: Wait time
+### Scoping
 
-### Sample Output
+- Limit scope to the smallest region possible.
+- Declare variables close to their use.
+- Prefer range-based `for` loops.
+- No `goto`, `setjmp`, or `longjmp`.
+- Avoid global variables completely.
+
+---
+
+### Comments
+
+- Use `//` for inline comments.
+- Explain **why**, not just **what**.
+- Use `// TODO:` to mark incomplete parts.
+
+---
+
+### Macros
+
+- Avoid macros unless absolutely necessary.
+- If used, name them using `SCREAMING_SNAKE_CASE`.
+
+---
+
+### Structs vs Classes
+
+- Use `struct` only for passive data containers with no logic.
+- Use `class` when encapsulation, invariants, or behavior is involved.
+
+---
+
+### Enums
+
+- Always use `enum class` for type safety and scoping.
+
+---
+
+### Pointers and References
+
+- Use references when a value is always expected.
+- Use pointers only to represent nullable objects.
+- Use `nullptr` instead of `NULL`.
+
+---
+
+### Functions
+
+- Keep them short and single-purpose.
+- Prefer few arguments.
+- Pass small objects by value, large ones by const-reference.
+
+---
+
+## Project Overview
+
+A centralized system that dispatches ambulance cars (SCars and NCars) across multiple hospitals in response to three types of requests:
+- **NP**: Normal Patients
+- **SP**: Scheduled Patients
+- **EP**: Emergency Patients (with severity level)
+
+The system processes:
+- Distance matrices
+- Speeds of different car types
+- Real-time cancellations
+- Queued and prioritized requests
+- Car availability and scheduling
+
+---
+
+### Input Format
+
+The input begins with the number of hospitals, followed by:
+- Speeds of SCars and NCars
+- A square distance matrix (NxN)
+- Available SCars and NCars in each hospital
+- Patient requests (sorted by time)
+- Cancellations (time + patient ID)
+
+---
+
+### Output Format
+
+Output includes:
+- For each patient who arrives: `FT PID QT WT`
+- Summary statistics at the end:
+  - Total patients by type
+  - Hospital and car counts
+  - Avg wait time
+  - % of EPs not served by home hospital
+  - Avg busy time and utilization
+
+---
+
+### Example Output
+
 ```
 FT   PID  QT  WT
 245   12   3   77
 352   20   5   30
-352    1   1   56
 ...
-```
 
-### Statistics Section
-```
 patients: 744 [NP: 550, SP: 150, EP: 44]
 Hospitals = 23
 cars: 112 [SCar: 35, NCar: 77]
@@ -90,17 +152,8 @@ Avg busy time = 152
 Avg utilization = 77%
 ```
 
+---
 
-## 🧠 Concepts Covered
+=
 
-- Priority queues & scheduling
-- Graph traversal and shortest path algorithms
-- Simulation modeling
-- Dynamic event processing
-- File I/O operations
-- Data structure design & memory management
-
-## 📎 Note
-
-> This project is part of the course **CIE205: Data Structures and Algorithms – Fall 2024**.  
-
+This project is intended to test your knowledge of data structures, simulation, algorithm design, and real-time scheduling — critical tools in building intelligent systems.
