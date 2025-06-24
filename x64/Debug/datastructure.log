@@ -1,0 +1,8 @@
+﻿  Hospital.cpp
+D:\Year 3\Semster 1\Data Structure\New New New New\datastructure\datastructure\datastructure\Hospital.cpp(151,13): warning C4101: 'priority': unreferenced local variable
+D:\Year 3\Semster 1\Data Structure\New New New New\datastructure\datastructure\datastructure\Hospital.cpp(617,40): warning C4101: 'e': unreferenced local variable
+D:\Year 3\Semster 1\Data Structure\New New New New\datastructure\datastructure\datastructure\Hospital.cpp(163,1): warning C4715: 'Hospital::finished_patient': not all control paths return a value
+D:\Year 3\Semster 1\Data Structure\New New New New\datastructure\datastructure\datastructure\Hospital.cpp(189,1): warning C4715: 'Hospital::move_car_to_outlist': not all control paths return a value
+D:\Year 3\Semster 1\Data Structure\New New New New\datastructure\datastructure\datastructure\Hospital.cpp(204,1): warning C4715: 'Hospital::back_car': not all control paths return a value
+D:\Year 3\Semster 1\Data Structure\New New New New\datastructure\datastructure\datastructure\linked_queue.h(260,1): warning C4715: 'LinkedQueue<Patient>::cancel_request': not all control paths return a value
+  datastructure.vcxproj -> D:\Year 3\Semster 1\Data Structure\New New New New\datastructure\datastructure\x64\Debug\datastructure.exe
